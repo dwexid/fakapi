@@ -8,11 +8,12 @@ const { createDataFaker } = require("../utils/fakerHelper.js");
 
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
+const rootDirectory = path.join(__dirname, '../..');
 
-const getData = async (req, res, BASE_DIR) => {
-    const DATA_PATH = BASE_DIR + "/src/data";
+const getData = async (req, res) => {
+    const DATA_PATH = rootDirectory + "/src/data";
     const route = req.params.ep;
-    const eps = await readData(BASE_DIR);
+    const eps = await readData(rootDirectory);
 
     const dataFile = eps.filter((el) => el.path === route)[0];
     let fileName;
@@ -20,7 +21,7 @@ const getData = async (req, res, BASE_DIR) => {
         fileName = dataFile.file;
     } else {
         res.header.statusCode = 404;
-        return res.json("404 Not found");
+        return res.status(404).send("404 Not found");
     }
 
     const data = await readFileAsync(`${DATA_PATH}/${fileName}`);
@@ -30,12 +31,12 @@ const getData = async (req, res, BASE_DIR) => {
     });
 }
 
-const createData = async (req, res, BASE_DIR) => {
-    const DATA_PATH = BASE_DIR + "/src/data";
+const createData = async (req, res) => {
+    const DATA_PATH = rootDirectory + "/src/data";
     const url = req.body.path ?? "";
 
     // get data from uploded file
-    const absolutePath = path.join(BASE_DIR, req.file.path);
+    const absolutePath = path.join(rootDirectory, req.file.path);
     const jsonString = fs.readFileSync(absolutePath, "utf-8");
     const jsonObject = JSON.parse(jsonString);
     fs.unlink(absolutePath, (err) => {
@@ -53,14 +54,14 @@ const createData = async (req, res, BASE_DIR) => {
     await writeFileAsync(`${DATA_PATH}/${fileName}`, JSON.stringify(jsonData));
 
     // update file endpoints
-    const eps = await readData(BASE_DIR);
+    const eps = await readData(rootDirectory);
     if (eps.filter((val) => val.path == url).length == 0) {
         eps.push({
             path: url,
             file: fileName,
         });
     }
-    await writeFileAsync(`${BASE_DIR}/endpoints.json`, JSON.stringify(eps));
+    await writeFileAsync(`${rootDirectory}/endpoints.json`, JSON.stringify(eps));
 
     res.json({ message: "success", data: url });
 }
