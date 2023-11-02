@@ -11,11 +11,17 @@ const path = require("path");
 const { promisify } = require("util");
 const dayjs = require("dayjs");
 
+// Api
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
 
 const app = express();
 const port = 3000;
+
+// Front end
+app.set("views", path.join(__dirname, "./app/views"));
+app.set("view engine", "pug");
+app.use("/public", express.static(path.join(__dirname, "./app/assets")));
 
 app.use(cors());
 
@@ -28,7 +34,7 @@ const DATA_PATH = BASE_DIR + "/data";
 // const
 
 app.get("/", (req, res) => {
-  res.json({ message: "Here's fake API" });
+  res.render("index");
 });
 
 async function readData() {
