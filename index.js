@@ -12,7 +12,7 @@ const appRoutes = require("./routes/web.js");
 
 // init express.js, port
 const app = express();
-const port = 3000;
+const port = 3333;
 
 // Front end setup
 app.set("views", path.join(__dirname, "./src/views"));

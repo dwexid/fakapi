@@ -1,8 +1,14 @@
 {
-    "len": 1,
+    "len": 3,
     "data": {
         "id": "int",
         "name": "name",
-        "phone": "phone"
+        "phone": "phone",
+        "category": {
+            "data": {
+                "id": "int",
+                "title": "string"
+            }
+        }
     }
 }
