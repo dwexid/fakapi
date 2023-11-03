@@ -15,9 +15,9 @@ const app = express();
 const port = 3000;
 
 // Front end setup
-app.set("views", path.join(__dirname, "./app/views"));
+app.set("views", path.join(__dirname, "./src/views"));
 app.set("view engine", "pug");
-app.use("/public", express.static(path.join(__dirname, "./app/assets")));
+app.use("/public", express.static(path.join(__dirname, "./public")));
 
 // Back end setup
 app.use(cors());
