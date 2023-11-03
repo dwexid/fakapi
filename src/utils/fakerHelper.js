@@ -1,5 +1,5 @@
-const { faker } = require("@faker-js/faker/locale/id_ID");
-const dayjs = require("dayjs");
+import { faker } from "@faker-js/faker/locale/id_ID";
+import dayjs from "dayjs";
 
 const fakeIt = (key) => {
   switch (key) {
@@ -22,9 +22,9 @@ const fakeIt = (key) => {
     default:
       return "";
   }
-}
+};
 
-const createDataFaker = (jsonData) => {
+export const createDataFaker = (jsonData) => {
   const dataLen = jsonData.len;
   const data = jsonData.data;
 
@@ -61,8 +61,4 @@ const createDataFaker = (jsonData) => {
     }
   }
   return result;
-}
-
-module.exports = {
-  createDataFaker
 };

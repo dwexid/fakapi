@@ -1,12 +1,8 @@
-const fs = require("fs");
-const { promisify } = require("util");
-const readFileAsync = promisify(fs.readFile);
+import { readFile } from "fs";
+import { promisify } from "util";
+const readFileAsync = promisify(readFile);
 
-const readData = async () => {
+export const readData = async () => {
   const epsRaw = await readFileAsync(__basedir + "/endpoints.json");
   return JSON.parse(epsRaw);
-};
-
-module.exports = {
-  readData,
 };

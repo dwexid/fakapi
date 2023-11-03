@@ -1,23 +1,31 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const path = require("path");
+import express from "express";
+import ViteExpress from "vite-express";
 
-// init root path
-global.__basedir = __dirname;
+import bodyParser from "body-parser";
+import cors from "cors";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+
+// init global variables
+globalThis.__dirname = dirname(__filename);
+globalThis.__basedir = __dirname;
 
 // init routes
-const apiRoutes = require("./routes/api.js");
-const appRoutes = require("./routes/web.js");
+// import apiRoutes from "./routes/api.js";
+import appRoutes from "./routes/web.js";
 
 // init express.js, port
 const app = express();
 const port = 3333;
 
+console.log(`didididid  ${__dirname}`);
+
 // Front end setup
-app.set("views", path.join(__dirname, "./src/views"));
+app.set("views", join(__dirname, "./src/views"));
 app.set("view engine", "pug");
-app.use("/public", express.static(path.join(__dirname, "./public")));
+app.use("/public", express.static(join(__dirname, "./public")));
 
 // Back end setup
 app.use(cors());
@@ -26,9 +34,11 @@ app.use(bodyParser.json());
 
 // routes
 app.get("/", (_, res) => res.redirect("/app"));
-app.use("/api", apiRoutes);
+// app.use("/api", apiRoutes);
 app.use("/app", appRoutes);
 
-app.listen(port, () => {
-  console.log(`Fakapi listening at http://localhost:${port}`);
-});
+ViteExpress.listen(app, port, () => console.log("Server is listening..."));
+
+// app.listen(port, () => {
+//   console.log(`Fakapi listening at http://localhost:${port}`);
+// });

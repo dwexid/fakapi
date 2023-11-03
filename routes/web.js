@@ -1,12 +1,11 @@
-const express = require("express");
+import { Router } from "express";
 
 // init router & base directory
-const router = express.Router();
+const router = Router();
 
 // routes
 router.get("/", (req, res) => {
   res.render("index");
 });
 
-// export routes
-module.exports = router;
+export default router;

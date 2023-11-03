@@ -1,17 +1,17 @@
 // library read and write file
-const fs = require("fs");
-const path = require("path");
-const { promisify } = require("util");
+import { readFile, writeFile, readFileSync, unlink } from "fs";
+import { join } from "path";
+import { promisify } from "util";
 // function helper
-const { readData } = require("../../utils/common.js");
-const { createDataFaker } = require("../../utils/fakerHelper.js");
+import { readData } from "../../utils/common.js";
+import { createDataFaker } from "../../utils/fakerHelper.js";
 
-const readFileAsync = promisify(fs.readFile);
-const writeFileAsync = promisify(fs.writeFile);
+const readFileAsync = promisify(readFile);
+const writeFileAsync = promisify(writeFile);
 
 const DATA_PATH = `${__basedir}/src/data`;
 
-const getData = async (req, res) => {
+export const getData = async (req, res) => {
   const route = req.params.ep;
   const eps = await readData();
 
@@ -31,14 +31,14 @@ const getData = async (req, res) => {
   });
 };
 
-const createData = async (req, res) => {
+export const createData = async (req, res) => {
   const url = req.body.path ?? "";
 
   // get data from uploded file
-  const absolutePath = path.join(__basedir, req.file.path);
-  const jsonString = fs.readFileSync(absolutePath, "utf-8");
+  const absolutePath = join(__basedir, req.file.path);
+  const jsonString = readFileSync(absolutePath, "utf-8");
   const jsonObject = JSON.parse(jsonString);
-  fs.unlink(absolutePath, (err) => {
+  unlink(absolutePath, (err) => {
     if (err) {
       a.error("Error deleting the file:", err);
       return res.status(500).send("Error deleting the file");
@@ -63,9 +63,4 @@ const createData = async (req, res) => {
   await writeFileAsync(`${__basedir}/endpoints.json`, JSON.stringify(eps));
 
   res.json({ message: "success", data: url });
-};
-
-module.exports = {
-  getData,
-  createData,
 };

@@ -1,16 +1,16 @@
-const express = require("express");
+import { Router } from "express";
 // library upload file multipart/formdata
-const multer = require("multer");
+import multer from "multer";
 const upload = multer({ dest: "../datas/" });
 
 // call controller API
-const {
+import {
   getData,
   createData,
-} = require("../src/controller/api/dataFakerController.js");
+} from "../src/controller/api/dataFakerController.js";
 
 // init router & base directory
-const router = express.Router();
+const router = Router();
 
 /* Error handler middleware */
 router.use((err, req, res, next) => {
@@ -25,4 +25,4 @@ router.get("/:ep", getData);
 router.post("/create", upload.single("faker"), createData);
 
 // export routes
-module.exports = router;
+export default router;

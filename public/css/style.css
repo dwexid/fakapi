@@ -1,7 +1,16 @@
 body{
     font-family: nunito;
-    background-color: #f6f6f6;
+    background-color: #0f172b;
 }
+body, div, span, p{
+    color: #9ca3af;
+}
+a, li{
+    color: #d1d5dbff;
+}
+/* header{
+    background-color: #1f2938ff;
+} */
 #brand{
     color: tomato;
     font-size: 18;
