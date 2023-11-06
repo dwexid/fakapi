@@ -7,10 +7,11 @@ hljs.registerLanguage("json", json);
 // init router & base directory
 const router = Router();
 
+let jsjs = `{"nama": "Halim", "category":{"id": 1}}`;
 // routes
 router.get("/", (req, res) => {
   res.render("index", {
-    nami: `{"nama": "Halim", "category":{"id": 1}}`,
+    nami: JSON.stringify(JSON.parse(jsjs), null, 2),
   });
 });
 

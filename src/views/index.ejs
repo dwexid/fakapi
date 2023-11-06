@@ -37,13 +37,16 @@
         <button type="submit" class="absolute right-0 top-0 mt-5 mr-4"></button>
       </div>
       <div class="ep-item basis-full mt-5">
-        <h1 class="group-title">Master</h1>
+        <div class="flex justify-between">
+          <h1 class="group-title"># Master</h1>
+          <h1 class="group-title"><span class="rotate-90">#</span></h1>
+        </div>
         <div class="section">
           <div class="section-header">
-            <pre><code class="language-plaintext">GET Master/Banners</code></pre>
+            <pre><code class="language-plaintext !p-0 !bg-inherit">GET Master/Banners {start_date, end_date}</code></pre>
           </div>
           <div class="section-body max-w-screen">
-            <pre><code class="language-json"><%-nami%></code></pre>
+            <pre><code class="language-json rounded-b-lg"><%-nami%></code></pre>
           </div>
         </div>
       </div>

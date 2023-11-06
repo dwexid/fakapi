@@ -19,7 +19,7 @@
     background: #1e293bff;
   }
   .border-color{
-    @apply border-gray-700
+    @apply border-gray-800
   }
   .bordered{
     @apply border border-color
@@ -47,7 +47,7 @@
   }
   .section-header{
     background-color: #131b2eff;
-    @apply px-5 py-3 bordered-b rounded-lg
+    @apply px-5 py-3 bordered-b rounded-t-lg
   }
   /* .section-body{
   } */
