@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap"
+    />
+    <link rel="stylesheet" href="public/css/tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+
+    <link rel="stylesheet" href="public/css/style.css" />
+  </head>
+  <body>
+    <%- include('layouts/header'); -%>
+    <div class="main-content">
+      <div class="pt-2 relative mx-auto text-gray-600 w-full">
+        <input
+          class="search"
+          type="search"
+          name="search"
+          placeholder="Search"
+        />
+        <button type="submit" class="absolute right-0 top-0 mt-5 mr-4"></button>
+      </div>
+      <div class="ep-item basis-full mt-5">
+        <h1 class="group-title">Master</h1>
+        <div class="section">
+          <div class="section-header">
+            <pre><code class="language-plaintext">GET Master/Banners</code></pre>
+          </div>
+          <div class="section-body max-w-screen">
+            <pre><code class="language-json"><%-nami%></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -20,11 +20,9 @@ import appRoutes from "./routes/web.js";
 const app = express();
 const port = 3333;
 
-console.log(`didididid  ${__dirname}`);
-
 // Front end setup
 app.set("views", join(__dirname, "./src/views"));
-app.set("view engine", "pug");
+app.set("view engine", "ejs");
 app.use("/public", express.static(join(__dirname, "./public")));
 
 // Back end setup
@@ -37,8 +35,8 @@ app.get("/", (_, res) => res.redirect("/app"));
 // app.use("/api", apiRoutes);
 app.use("/app", appRoutes);
 
-ViteExpress.listen(app, port, () => console.log("Server is listening..."));
+// ViteExpress.listen(app, port, () => console.log("Server is listening..."));
 
-// app.listen(port, () => {
-//   console.log(`Fakapi listening at http://localhost:${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Fakapi listening at http://localhost:${port}`);
+});

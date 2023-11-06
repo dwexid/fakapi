@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+@layer components{
+  body{
+    font-family: nunito;
+    background-color: #0f172b;
+  }
+  body, div, span, p{
+    color: #9ca3af;
+  }
+  a, li{
+    color: #d1d5dbff;
+  }
+  .bg-section{
+    background: #1e293bff;
+  }
+  .border-color{
+    @apply border-gray-700
+  }
+  .bordered{
+    @apply border border-color
+  }
+  .bordered-b{
+    @apply border-b border-color
+  }
+  .navbar{
+    @apply flex items-center justify-between px-8 py-5 lg:px-8
+  }
+  .nav-item{
+      @apply px-3;
+  }
+  .main-content{
+    @apply mt-3 flex flex-wrap mx-auto w-2/3 bg-transparent 
+  }
+  .search{
+    @apply w-full bordered text-gray-50 bg-transparent h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none
+  }
+  .group-title{
+    @apply py-3 text-2xl
+  }
+  .section{
+    @apply rounded-lg bordered bg-section
+  }
+  .section-header{
+    background-color: #131b2eff;
+    @apply px-5 py-3 bordered-b rounded-lg
+  }
+  /* .section-body{
+  } */
+}
