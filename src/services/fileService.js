@@ -10,6 +10,27 @@ const readFileAsync = promisify(readFile);
 const writeFileAsync = promisify(writeFile);
 const DATA_PATH = `src/data`;
 
+export const getAll = async () => {
+  const eps = await readData();
+
+  let result = [];
+  for (var i in eps) {
+    let endPointData = {};
+
+    const fileName = `${eps[i].file}`;
+    try {
+      const endPointRes = await readFileAsync(`${DATA_PATH}/${fileName}`);
+      endPointData["path"] = eps[i].path;
+      endPointData["data"] = JSON.parse(endPointRes);
+      result.push(endPointData);
+    } catch (e) {
+      console.log("gagal " + DATA_PATH + fileName);
+      console.log(e);
+    }
+  }
+  return result;
+};
+
 export const getDetail = async (endPoint) => {
   const eps = await readData();
 

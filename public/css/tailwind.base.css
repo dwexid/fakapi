@@ -43,7 +43,7 @@
     @apply py-3 text-2xl
   }
   .section{
-    @apply rounded-lg bordered bg-section
+    @apply rounded-lg bordered mb-3
   }
   .section-header{
     background-color: #131b2eff;
