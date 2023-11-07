@@ -6,6 +6,7 @@ const upload = multer({ dest: "../datas/" });
 // call controller API
 import {
   getData,
+  createDataFromJson,
   createData,
 } from "../src/controller/api/dataFakerController.js";
 
@@ -22,7 +23,8 @@ router.use((err, req, res, next) => {
 
 // routes
 router.get("/:ep", getData);
-router.post("/create", upload.single("faker"), createData);
+router.post("/create", upload.single("faker"), createDataFromJson);
+router.post("/fire", createData);
 
 // export routes
 export default router;
