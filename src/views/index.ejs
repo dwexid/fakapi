@@ -1,62 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap"
-    />
-    <link rel="stylesheet" href="public/css/tailwind.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-    <!-- and it's easy to individually load additional languages -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" />
+  <link rel="stylesheet" href="public/css/tailwind.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-    <script>
-      hljs.highlightAll();
-    </script>
+  <!-- and it's easy to individually load additional languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
 
-    <link rel="stylesheet" href="public/css/style.css" />
-  </head>
-  <body>
-    <%- include('layouts/header'); -%>
+  <script>
+    hljs.highlightAll();
+  </script>
+
+  <link rel="stylesheet" href="public/css/style.css" />
+</head>
+
+<body>
+  <%- include('layouts/header'); -%>
     <div class="main-content">
       <div class="pt-2 relative mx-auto text-gray-600 w-full">
-        <input
-          class="search"
-          type="search"
-          name="search"
-          placeholder="Search"
-        />
+        <input class="search" type="search" name="search" placeholder="Search" />
         <button type="submit" class="absolute right-0 top-0 mt-5 mr-4"></button>
       </div>
 
       <% result.forEach(function(res){ %>
-      <div class="basis-full mt-5">
-        <div class="flex justify-between">
-          <h1 class="group-title capitalize"># <%= res.name %></h1>
-          <h1 class="group-title"><span class="rotate-90">#</span></h1>
-        </div>
-        <% res.endPoints.forEach(function(ep){ %>
-        <div class="section">
-          <div class="section-header">
-            <a href="/api/<%= ep.path %>" class="" target="__blank">
-              <pre><code class="language-plaintext !p-0 !bg-inherit">GET <%= ep.path.replace('.','/') %></code></pre>
-            </a>
+        <div class="basis-full w-full mt-5">
+          <div class="flex justify-between">
+            <h1 class="group-title capitalize"># <%= res.name %>
+            </h1>
+            <h1 id="tes" class="group-title transition">#</h1>
           </div>
-          <div class="section-body max-w-screen">
-            <pre><code class="language-json rounded-b-lg"><%-ep.data%></code></pre>
-          </div>
+          <% res.endPoints.forEach(function(ep){ %>
+            <div class="section overflow-x-auto">
+              <div class="section-header">
+                <a href="/api/<%= ep.path %>" class="" target="__blank">
+                  <pre><code class="language-plaintext !p-0 !bg-inherit">GET <%= ep.path.replace('.','/') %></code></pre>
+                </a>
+              </div>
+              <div class="section-body max-w-screen">
+                <pre><code class="language-json rounded-b-lg"><%-ep.data%></code></pre>
+              </div>
+            </div>
+            <% }); %>
         </div>
         <% }); %>
-      </div>
-      <% }); %>
     </div>
-  </body>
+</body>
+
 </html>
