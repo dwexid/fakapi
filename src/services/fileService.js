@@ -53,12 +53,7 @@ export const generateFromJson = async (req) => {
     const absolutePath = join(globalThis.__basedir, req.file.path);
     const jsonString = readFileSync(absolutePath, "utf-8");
     const jsonObject = JSON.parse(jsonString);
-    unlink(absolutePath, (err) => {
-      if (err) {
-        a.error("Error deleting the file:", err);
-        return err;
-      }
-    });
+    removeFile(absolutePath);
 
     // create fake data
     const jsonData = createDataFaker(jsonObject);
@@ -115,4 +110,13 @@ export const generateFromBody = async (data) => {
   }
 
   return url;
+};
+
+export const removeFile = (path) => {
+  unlink(path, (err) => {
+    if (err) {
+      // a.error("Error deleting the file:", err);
+      return err;
+    }
+  });
 };

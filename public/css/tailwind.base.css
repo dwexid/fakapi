@@ -15,6 +15,9 @@
   a, li{
     color: #d1d5dbff;
   }
+  .bg-title{
+    background-color: #397071;
+  }
   .bg-section{
     background: #1e272e;
   }
@@ -52,5 +55,14 @@
   .section-body{
     font-weight: 300 !important;
     @apply text-sm
+  }
+  li.delete-item a{
+    @apply px-5 py-3 !rounded-xl mb-3  border border-color bg-transparent
+  }
+  li.delete-item a:hover{
+    @apply bg-title
+  }
+  .delete-item a{
+    @apply block 
   }
 }
