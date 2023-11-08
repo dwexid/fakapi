@@ -7,7 +7,7 @@
 @layer components{
   body{
     font-family: nunito;
-    background-color: #0f172b;
+    background-color: #0b1d2e;
   }
   body, div, span, p{
     color: #9ca3af;
@@ -16,10 +16,10 @@
     color: #d1d5dbff;
   }
   .bg-section{
-    background: #1e293bff;
+    background: #1e272e;
   }
   .border-color{
-    @apply border-gray-800
+    border-color: #397071;
   }
   .bordered{
     @apply border border-color
@@ -46,9 +46,11 @@
     @apply rounded-lg bordered mb-3
   }
   .section-header{
-    background-color: #131b2eff;
+    background-color: #397071;
     @apply px-5 py-3 bordered-b rounded-t-lg
   }
-  /* .section-body{
-  } */
+  .section-body{
+    font-weight: 300 !important;
+    @apply text-sm
+  }
 }
